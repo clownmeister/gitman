@@ -45,15 +45,18 @@ dpkg-deb --build "$BUILD_DIR"
 echo "Package built successfully: ${BUILD_DIR}.deb"
 
 # Set up debian-repo directory structure
-REPO_DIR="./debian-repo/dists/stable/main/binary-amd64"
-mkdir -p "$REPO_DIR"
+REPO_DIR="./debian-repo"
+PACKAGE_DIR="./dists/stable/main/binary-amd64"
+REPO_PACKAGE_DIR="./debian-repo/dists/stable/main/binary-amd64"
+mkdir -p "$REPO_PACKAGE_DIR"
 
 # Copy the .deb package to debian-repo
-cp "${BUILD_DIR}.deb" "$REPO_DIR"
+cp "${BUILD_DIR}.deb" "$REPO_PACKAGE_DIR"
 
 # Generate Packages and Packages.gz files
 cd "$REPO_DIR"
-dpkg-scanpackages . /dev/null > Packages
+dpkg-scanpackages . /dev/null > "$PACKAGE_DIR"/Packages
+cd "$PACKAGE_DIR"
 gzip -k -f Packages
 
 # Create Release file with more comprehensive metadata
