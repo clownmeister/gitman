@@ -1,0 +1,9 @@
+Archive: stable
+Component: main
+Origin: GitHub
+Label: gitman
+Architecture: amd64
+Version: 1.0
+Suite: stable
+Codename: stable
+Date: Mon, 04 Nov 2024 14:33:22 +0000
