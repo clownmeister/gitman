@@ -3,11 +3,11 @@ Version: 1.0
 Architecture: amd64
 Essential: no
 Maintainer: Lucian
-Filename: ./gitman_1.0_amd64.deb
-Size: 1716
-MD5sum: 19be3575883c138572181a6aaeb83c54
-SHA1: 71326a990f4976d07838dddca0c859e2225b9d73
-SHA256: c8b40db59b637867fee3fccf2cef6877559b03ef5b5f3b8bb192dbafc034b7cf
+Filename: ./dists/stable/main/binary-amd64/gitman_1.0_amd64.deb
+Size: 1712
+MD5sum: a58668cba99e591fc7fb718217aa7583
+SHA1: 01e1ca12b7d13ec64e7e89de31e93bcd70468538
+SHA256: c7fb39574f0e1acb0f774a2bf71a3bd8b914872fda35fbbf9201165ddb1030fe
 Section: utils
 Priority: optional
 Description: Git
