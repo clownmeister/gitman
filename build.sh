@@ -1,15 +1,17 @@
 #!/bin/bash
 
+# Load environment variables from .env file
+if [ -f .env ]; then
+  export $(grep -v '^#' .env | xargs)
+else
+  echo ".env file not found!"
+  exit 1
+fi
+
+# Now, the variables from .env are available in the script
 # Clear previous build
 rm -rf ./build
 rm -rf ./debian-repo/dists/stable/main/binary-amd64
-
-# Set package variables
-PACKAGE_NAME="gitman"
-VERSION="1.0"
-ARCH="amd64"
-MAINTAINER="Lucian Blazek <lucian.blazek@gmail.com>"
-DESCRIPTION="Git branch management tool for syncing and cleaning branches."
 
 # Create the directory structure for the .deb package
 BUILD_DIR="./build/${PACKAGE_NAME}_${VERSION}_${ARCH}"
@@ -59,8 +61,8 @@ cat <<EOL > Release
 Archive: stable
 Component: main
 Origin: GitHub
-Label: gitman
-Architecture: amd64
+Label: $PACKAGE_NAME
+Architecture: $ARCH
 Version: $VERSION
 Suite: stable
 Codename: stable
