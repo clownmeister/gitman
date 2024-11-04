@@ -1,0 +1,4 @@
+# dependencies.txt
+
+# Essential build tools
+dpkg-dev
