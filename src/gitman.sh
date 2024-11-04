@@ -38,7 +38,7 @@ function gitSync() {
     echo -e "\n\e[92mSynced all branches with valid upstreams!\n"
 }
 
-# Clears all local branches except master
+# Clears all local branches except default branch
 function gitClear() {
     # Fetch all remote branches to ensure we have up-to-date information
     git fetch --all
@@ -54,8 +54,8 @@ function gitClear() {
         return
     fi
 
-    # Loop through all local branches except master
-    for branch in $(git branch | grep -v "master"); do
+    # Loop through all local branches except  default branch
+    for branch in $(git branch | grep -v "$DEFAULT_BRANCH"); do
         # Check if the branch has an upstream
         UPSTREAM=$(git rev-parse --symbolic-full-name $branch@{u} 2>/dev/null)
 
