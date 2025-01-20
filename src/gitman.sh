@@ -77,6 +77,23 @@ function gitClear() {
     echo -e "\n\e[92mCleared all branches without changes or without valid upstream!\n"
 }
 
+# Merges the latest remote branch into the current branch
+function gitMergeBranch() {
+    TARGET_BRANCH=$1
+    if [ -z "$TARGET_BRANCH" ]; then
+        echo -e "\e[91mError: No target branch specified. Usage: gitman merge <branch>\e[0m"
+        return 1
+    fi
+
+    CURRENT_BRANCH=$(git branch --show-current)
+    echo -e "\e[92mFetching latest updates from $TARGET_BRANCH...\e[0m"
+    git fetch origin "$TARGET_BRANCH" && git merge FETCH_HEAD || {
+        echo -e "\e[91mFailed to fetch and merge $TARGET_BRANCH.\e[0m"
+        return 1
+    }
+    echo -e "\e[92mSuccessfully merged $TARGET_BRANCH into $CURRENT_BRANCH.\e[0m"
+}
+
 # Main command dispatcher
 case "$1" in
     sync)
@@ -85,8 +102,11 @@ case "$1" in
     clear)
         gitClear
         ;;
+    merge)
+        gitMergeBranch "$2"
+        ;;
     *)
-        echo -e "\e[91mUsage: gitman {sync|clear}\e[0m"
+        echo -e "\e[91mUsage: gitman {sync|clear|merge <branch>}\e[0m"
         exit 1
         ;;
 esac
