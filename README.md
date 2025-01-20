@@ -30,6 +30,7 @@ Here are the commands you can use with GitMan:
 |----------------|------------------------------------------------------------------------------------------------|
 | `gitman clear` | Safely deletes all local branches. **Does not** delete branches with changes against upstream. |
 | `gitman sync`  | Fetches and pulls all local branches iteratively.                                              |
+| `gitman merge` | Fetches the latest remote state of a specified branch and merges it into the current branch.   |
 
 ## Usage
 
